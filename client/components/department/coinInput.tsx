@@ -12,15 +12,21 @@ export function CoinInput({
   grams: number;
   onAmount(amount: number): void;
 }) {
-  const [count, setCount] = useState("");
-  const [weight, setWeight] = useState("");
-  const sum = useMemo(() => (parseInt(count) || 0) * amount, [count]);
-  useEffect(() => onAmount(sum), [count]);
-  useEffect(() => {
-    if (weight.length) {
-      setCount(Math.round(parseInt(weight) / grams).toString());
-    }
-  }, [weight]);
+  const [inputCount, setInputCount] = useState("");
+  const [inputWeight, setInputWeight] = useState("");
+  const calculatedCount = useMemo(
+    () => Math.round(parseInt(inputWeight) / grams),
+    [inputWeight],
+  );
+  const calculatedWeight = useMemo(
+    () => parseInt(inputCount) * grams,
+    [inputCount],
+  );
+  const sum = useMemo(
+    () => (inputCount ? parseInt(inputCount) : calculatedCount || 0) * amount,
+    [inputCount, calculatedCount],
+  );
+  useEffect(() => onAmount(sum), [inputCount, inputWeight]);
   return (
     <div>
       <label>
@@ -29,20 +35,21 @@ export function CoinInput({
         Antall:{" "}
         <input
           type="number"
-          disabled={weight.length > 0}
-          value={count}
+          maxLength={6}
+          disabled={inputWeight.length > 0}
+          value={inputCount || calculatedCount}
           min={0}
-          onChange={(e) => setCount(e.target.value)}
+          onChange={(e) => setInputCount(e.target.value)}
         />{" "}
-        kr {(parseInt(count) || 0) * amount} (
-        {((sum / amount) * grams).toFixed(2)}g)
+        kr {sum} ({((sum / amount) * grams).toFixed(2)}g)
         <br />
         Gram:{" "}
         <input
           type="number"
-          value={weight}
+          value={inputWeight || calculatedWeight}
+          disabled={inputCount.length > 0}
           min={0}
-          onChange={(e) => setWeight(e.target.value)}
+          onChange={(e) => setInputWeight(e.target.value)}
           maxLength={5}
         />{" "}
         ({grams}g per mynt)
