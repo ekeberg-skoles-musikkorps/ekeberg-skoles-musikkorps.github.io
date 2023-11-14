@@ -34,3 +34,12 @@ export interface SettlementReport {
   description?: string;
   settlement: Settlement;
 }
+
+export function sumSettlements(settlements: Settlement[]) {
+  return Object.fromEntries(
+    [...BILL_LABELS, ...COIN_LABELS].map((label) => [
+      label,
+      settlements.map((s) => s[label]).reduce((a, b) => a + b, 0) || 0,
+    ]),
+  );
+}

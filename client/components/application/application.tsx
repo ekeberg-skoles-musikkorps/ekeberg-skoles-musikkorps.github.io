@@ -4,6 +4,7 @@ import { FrontPage } from "./frontPage";
 import "./application.css";
 import { Link, Route, Routes } from "react-router-dom";
 import { DepartmentRoutes } from "../department/departmentRoutes";
+import { CashRoutes } from "../cash/cashRoutes";
 
 export function Application() {
   return (
@@ -16,6 +17,7 @@ export function Application() {
       <main>
         <Routes>
           <Route path={"/"} element={<FrontPage />} />
+          <Route path={"/cash/*"} element={<CashRoutes />} />
           <Route path={"/departments/*"} element={<DepartmentRoutes />} />
           <Route path={"*"} element={<h2>Siden finnes ikke</h2>} />
         </Routes>

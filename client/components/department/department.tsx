@@ -1,18 +1,15 @@
 import React from "react";
-import { BILL_LABELS, COIN_LABELS, Settlement } from "../../lib/money/bills";
+import {
+  BILL_LABELS,
+  COIN_LABELS,
+  sumSettlements,
+} from "../../lib/money/money";
 import { SettlementTable } from "../settlements/settlementTable";
 import { sampleSettlements } from "../../lib/money/sampleSettlements";
 
 export function Department() {
   const settlements = sampleSettlements();
-
-  const settlementSum: Settlement = Object.fromEntries(
-    [...BILL_LABELS, ...COIN_LABELS].map((label) => [
-      label,
-      settlements.map((s) => s.settlement[label]).reduce((a, b) => a + b, 0) ||
-        0,
-    ]),
-  );
+  const settlementSum = sumSettlements(settlements.map((s) => s.settlement));
 
   return (
     <>
