@@ -3,13 +3,13 @@ import * as React from "react";
 
 export function FrontPage() {
   return (
-    <>
+    <div className={"front-page"}>
       <div className={"card"}>
         <Link to={"/cash"}>
           <h2>Kontantkasse</h2>
           <div>Beholdning: kr 129.231</div>
           <div>Inntjening: kr 125.231</div>
-          <Link to={"/cache/settlements/new"}>
+          <Link to={"/cash/settlements/new"}>
             <button>Ny avstemming</button>
           </Link>
         </Link>
@@ -19,6 +19,11 @@ export function FrontPage() {
           <h2>Avdelinger</h2>
           <div>Inntjening: kr 125.211</div>
           <div>12 avdelinger</div>
+          <div>
+            <Link to={"/departments/settlements/new"}>
+              <button>Ny inntelling</button>
+            </Link>
+          </div>
         </Link>
       </div>
       <div className={"card"}>
@@ -32,6 +37,6 @@ export function FrontPage() {
           </div>
         </Link>
       </div>
-    </>
+    </div>
   );
 }
