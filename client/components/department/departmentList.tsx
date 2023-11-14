@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import * as React from "react";
 
-export function Departments() {
+export function DepartmentList() {
   return (
     <>
       <h2>Avdelinger</h2>

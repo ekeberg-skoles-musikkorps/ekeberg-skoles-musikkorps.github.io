@@ -1,7 +1,7 @@
 import { Link, Route, Routes } from "react-router-dom";
 import * as React from "react";
 import { DepartmentSettlementForm } from "./departmentSettlementForm";
-import { Departments } from "./departments";
+import { DepartmentList } from "./departmentList";
 
 function SettlementDepartmentSelector() {
   return (
@@ -20,7 +20,7 @@ function SettlementDepartmentSelector() {
 export function DepartmentRoutes() {
   return (
     <Routes>
-      <Route path={"/"} element={<Departments />} />
+      <Route path={"/"} element={<DepartmentList />} />
       <Route
         path={"/settlements/new"}
         element={<SettlementDepartmentSelector />}
