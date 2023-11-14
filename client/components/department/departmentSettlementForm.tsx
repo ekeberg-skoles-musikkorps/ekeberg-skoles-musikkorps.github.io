@@ -7,10 +7,7 @@ import { bills, coins, Settlement } from "../../lib/money/bills";
 export function DepartmentSettlementForm() {
   const [settlement, setSettlement] = useState<Settlement>({});
   const sum = useMemo(
-    () =>
-      Object.keys(settlement)
-        .map((k) => settlement[k])
-        .reduce((a, b) => a + b, 0),
+    () => Object.values(settlement).reduce((a, b) => a + b, 0),
     [settlement],
   );
   return (

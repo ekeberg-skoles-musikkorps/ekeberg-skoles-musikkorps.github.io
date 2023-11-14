@@ -1,5 +1,5 @@
-const BILL_LABELS = ["kr1000", "kr500", "kr200", "kr100", "kr50"];
-type BillType = (typeof BILL_LABELS)[number];
+export const BILL_LABELS = ["kr1000", "kr500", "kr200", "kr100", "kr50"];
+export type BillType = (typeof BILL_LABELS)[number];
 
 export const bills: { label: string; field: BillType; amount: number }[] = [
   { label: "1000-kr", field: "kr1000", amount: 1000 },
@@ -9,8 +9,8 @@ export const bills: { label: string; field: BillType; amount: number }[] = [
   { label: "50-kr", field: "kr50", amount: 50 },
 ];
 
-const COIN_LABELS = ["kr20", "kr10", "kr5", "kr1"];
-type CoinType = (typeof COIN_LABELS)[number];
+export const COIN_LABELS = ["kr20", "kr10", "kr5", "kr1"];
+export type CoinType = (typeof COIN_LABELS)[number];
 
 export const coins: {
   label: string;
@@ -24,6 +24,13 @@ export const coins: {
   { label: "1-kr", field: "kr1", amount: 1, grams: 4.35 },
 ];
 
-type CurrencyAmountType = CoinType | BillType;
+export type CurrencyAmountType = CoinType | BillType;
 
 export type Settlement = Record<CurrencyAmountType, number>;
+
+export interface SettlementReport {
+  teller: string;
+  time: Date;
+  description?: string;
+  settlement: Settlement;
+}

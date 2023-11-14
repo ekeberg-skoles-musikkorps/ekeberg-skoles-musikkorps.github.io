@@ -1,0 +1,13 @@
+.settlement-table {
+  border: 1px solid black;
+}
+
+.settlement-table th,
+.settlement-table td {
+  border: 1px solid black;
+  padding-inline: 0.2em;
+}
+
+.settlement-table .amount {
+  text-align: right;
+}
