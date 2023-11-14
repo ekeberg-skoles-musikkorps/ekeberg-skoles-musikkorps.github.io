@@ -1,6 +1,8 @@
 import * as React from "react";
 import { FrontPage } from "./frontPage";
 
+import "./application.css";
+
 export function Application() {
   return (
     <>

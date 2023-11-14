@@ -21,7 +21,7 @@ export function FrontPage() {
           <div>12 avdelinger</div>
         </Link>
       </div>
-      <div>
+      <div className={"card"}>
         <Link to={"/changeTasks"}>
           <h2>Veksleoppdrag</h2>
           <div>1 veksleoppdrag</div>
