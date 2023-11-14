@@ -3,7 +3,7 @@ import * as React from "react";
 
 export function FrontPage() {
   return (
-    <div className={"front-page"}>
+    <div className={"card-container"}>
       <div className={"card"}>
         <Link to={"/cash"}>
           <h2>Kontantkasse</h2>
