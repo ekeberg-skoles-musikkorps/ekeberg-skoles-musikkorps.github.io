@@ -15,7 +15,7 @@ export function Application() {
       <main>
         <ApplicationRoutes />
       </main>
-      <footer>© Ekeberg skoles musikkorps</footer>
+      <footer>© Ekeberg skoles musikkorps. Orgnr 971282150</footer>
     </>
   );
 }
