@@ -1,9 +1,9 @@
 export const BILL_DENOMINATIONS = ["kr1000", "kr500", "kr200", "kr100", "kr50"];
-export type BillDenominations = (typeof BILL_DENOMINATIONS)[number];
+export type BillDenomination = (typeof BILL_DENOMINATIONS)[number];
 
 export const bills: {
   label: string;
-  denomination: BillDenominations;
+  denomination: BillDenomination;
   amount: number;
 }[] = [
   { label: "1000-kr", denomination: "kr1000", amount: 1000 },
@@ -14,11 +14,11 @@ export const bills: {
 ];
 
 export const COIN_DENOMINATIONS = ["kr20", "kr10", "kr5", "kr1"];
-export type CoinDenominations = (typeof COIN_DENOMINATIONS)[number];
+export type CoinDenomination = (typeof COIN_DENOMINATIONS)[number];
 
 export const coins: {
   label: string;
-  denomination: CoinDenominations;
+  denomination: CoinDenomination;
   amount: number;
   grams: number;
 }[] = [
@@ -28,18 +28,18 @@ export const coins: {
   { label: "1-kr", denomination: "kr1", amount: 1, grams: 4.35 },
 ];
 
-export type CurrencyAmountType = CoinDenominations | BillDenominations;
+export type Denomination = CoinDenomination | BillDenomination;
 
-export type Settlement = Record<CurrencyAmountType, number>;
+export type CashBalance = Record<Denomination, number>;
 
 export interface SettlementReport {
   teller: string;
   time: Date;
   description?: string;
-  settlement: Settlement;
+  balance: CashBalance;
 }
 
-export function sumSettlements(settlements: Settlement[]) {
+export function sumBalances(settlements: CashBalance[]) {
   let denominations = [...BILL_DENOMINATIONS, ...COIN_DENOMINATIONS];
   return Object.fromEntries(
     denominations.map((d) => [

@@ -1,4 +1,4 @@
-import { Settlement, SettlementReport } from "./money";
+import { CashBalance, SettlementReport } from "./money";
 
 function pickOne<T>(options: T[]): T {
   return options[Math.trunc(Math.random() * options.length)];
@@ -12,12 +12,12 @@ export function sampleTeller() {
   return pickOne(["James", "Jill", "Sam", "Sally"]);
 }
 
-export function sampleVeksel() {
+export function sampleChangeReserveOrder(): SettlementReport {
   return {
     teller: sampleTeller(),
     description: "Veksel",
     time: new Date(),
-    settlement: {
+    balance: {
       kr200: -400,
       kr100: -500,
       kr50: -200,
@@ -27,7 +27,7 @@ export function sampleVeksel() {
   };
 }
 
-export function sampleSettlement(scale = 1): Settlement {
+export function sampleCashBalance(scale = 1): CashBalance {
   return {
     kr1000: nextInt(0, 3, scale) * 1000,
     kr500: nextInt(0, 5, scale) * 500,
@@ -41,17 +41,17 @@ export function sampleSettlement(scale = 1): Settlement {
   };
 }
 
-export function sampleSettlementReport() {
+export function sampleSettlementReport(): SettlementReport {
   return {
     teller: sampleTeller(),
     time: new Date(),
-    settlement: sampleSettlement(),
+    balance: sampleCashBalance(),
   };
 }
 
 export function sampleSettlements(): SettlementReport[] {
   return [
-    sampleVeksel(),
+    sampleChangeReserveOrder(),
     sampleSettlementReport(),
     sampleSettlementReport(),
     sampleSettlementReport(),

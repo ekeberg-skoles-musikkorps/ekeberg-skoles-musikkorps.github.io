@@ -1,6 +1,11 @@
 {
   "scripts": {
-    "dev": "cd client && npm run dev"
+    "dev": "cd client && npm run dev",
+    "build": "npm run check && npm run build:client",
+    "build:client": "cd client && npm run build",
+    "check": "npm run check:prettier && npm run check:client",
+    "check:prettier": "prettier --check .",
+    "check:client": "cd client && npm run check"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",

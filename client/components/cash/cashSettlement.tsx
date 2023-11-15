@@ -3,14 +3,14 @@ import { sampleSettlements } from "../../lib/money/sampleSettlements";
 import {
   BILL_DENOMINATIONS,
   COIN_DENOMINATIONS,
-  Settlement,
+  CashBalance,
 } from "../../lib/money/money";
 import { Link } from "react-router-dom";
 
 export function CashSettlement() {
   const candidateSettlements = sampleSettlements();
 
-  const settlement: Settlement = {};
+  const balance: CashBalance = {};
 
   return (
     <>
@@ -20,7 +20,7 @@ export function CashSettlement() {
       <h2>Fullfør oppgjør</h2>
       {BILL_DENOMINATIONS.map((d) => (
         <li id={d}>
-          {d}: {settlement[d] || 0}
+          {d}: {balance[d] || 0}
           <br />
           <button>Registrer ny pose</button>
         </li>
@@ -28,7 +28,7 @@ export function CashSettlement() {
       {COIN_DENOMINATIONS.map((d) => (
         <li id={d}>
           <Link to={`coins/${d}`}>
-            {d}: {settlement[d] || 0}
+            {d}: {balance[d] || 0}
           </Link>
         </li>
       ))}

@@ -1,4 +1,4 @@
-import { SettlementReport, sumSettlements } from "../../lib/money/money";
+import { SettlementReport, sumBalances } from "../../lib/money/money";
 import React from "react";
 
 import "./settlement.css";
@@ -11,18 +11,13 @@ export function SettlementTable({
 }: {
   settlements: SettlementReport[];
 }) {
-  const settlementSum = sumSettlements(settlements.map((s) => s.settlement));
+  const balance = sumBalances(settlements.map((s) => s.balance));
 
   return (
     <table className={"settlement-table"}>
       <thead>
         <SettlementTableTitleHeader />
-        <SettlementTableHeader
-          report={{
-            description: "SUM",
-            settlement: settlementSum,
-          }}
-        />
+        <SettlementTableHeader report={{ description: "SUM", balance }} />
       </thead>
       <tbody>
         {settlements.map((s) => (

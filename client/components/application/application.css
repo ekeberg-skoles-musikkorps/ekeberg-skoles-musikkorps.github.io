@@ -27,6 +27,7 @@ main {
 }
 
 .card-container .card {
+  flex: 1;
   padding: 0.5em 1em;
   border-style: solid;
   border-width: 2px;

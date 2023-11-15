@@ -2,7 +2,7 @@ import * as React from "react";
 import { useEffect, useMemo, useState } from "react";
 import { BillInput } from "./billInput";
 import { CoinInput } from "./coinInput";
-import { bills, coins, Settlement } from "../../lib/money/money";
+import { bills, coins, CashBalance } from "../../lib/money/money";
 
 function useWakeLock() {
   const [wakeLockSentinel, setWakeLockSentinel] = useState<WakeLockSentinel>();
@@ -17,7 +17,7 @@ function useWakeLock() {
 }
 
 export function DepartmentSettlementForm() {
-  const [settlement, setSettlement] = useState<Settlement>(() =>
+  const [settlement, setSettlement] = useState<CashBalance>(() =>
     JSON.parse(sessionStorage.getItem("currentSettlement") || "{}"),
   );
   useEffect(() => {

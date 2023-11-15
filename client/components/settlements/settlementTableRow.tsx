@@ -12,23 +12,23 @@ export function SettlementTableRow({
 }: {
   report: Optional<SettlementReport, "time" | "teller">;
 }) {
-  const { description, settlement, teller, time } = report;
+  const { description, balance, teller, time } = report;
   return (
     <tr>
       <td>{description}</td>
       <td>{time && "27/03 11:20"}</td>
       <td>{teller}</td>
       <td className={"amount"}>
-        {Object.values(settlement).reduce((a, b) => a + b, 0)}
+        {Object.values(balance).reduce((a, b) => a + b, 0)}
       </td>
       {BILL_DENOMINATIONS.map((d) => (
         <td key={d} className={"bill amount"}>
-          {settlement[d]}
+          {balance[d]}
         </td>
       ))}
       {COIN_DENOMINATIONS.map((d) => (
         <td key={d} className={"coin amount"}>
-          {settlement[d]}
+          {balance[d]}
         </td>
       ))}
     </tr>

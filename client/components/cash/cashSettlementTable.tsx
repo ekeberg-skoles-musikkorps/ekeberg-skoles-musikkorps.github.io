@@ -1,9 +1,9 @@
 import React from "react";
 import {
-  sampleSettlement,
+  sampleCashBalance,
+  sampleChangeReserveOrder,
   sampleSettlementReport,
   sampleTeller,
-  sampleVeksel,
 } from "../../lib/money/sampleSettlements";
 import { SettlementTableTitleHeader } from "../settlements/settlementTableTitleHeader";
 import { SettlementTableHeader } from "../settlements/settlementTableHeader";
@@ -11,32 +11,36 @@ import { SettlementTableRow } from "../settlements/settlementTableRow";
 import {
   BILL_DENOMINATIONS,
   COIN_DENOMINATIONS,
-  sumSettlements,
+  sumBalances,
 } from "../../lib/money/money";
 import { Link } from "react-router-dom";
+import { CashBalanceSettlement } from "../../lib/money/model";
 
 export function CashSettlementTable() {
-  const settlements = [
+  const settlements: CashBalanceSettlement[] = [
     {
       description: "Start",
-      teller: sampleTeller(),
       time: new Date(),
-      settlement: sampleSettlement(),
-      included: [],
+      looseCash: sampleCashBalance(),
+      moneyBags: [],
+      includedSettlements: [],
     },
     {
       description: "Etter veksel",
-      teller: sampleTeller(),
       time: new Date(),
-      settlement: sampleSettlement(0.1),
-      included: [sampleVeksel(), sampleVeksel()],
+      looseCash: sampleCashBalance(0.1),
+      moneyBags: [],
+      includedSettlements: [
+        sampleChangeReserveOrder(),
+        sampleChangeReserveOrder(),
+      ],
     },
     {
       description: "Etter dag 1",
-      teller: sampleTeller(),
       time: new Date(),
-      settlement: sampleSettlement(10),
-      included: [
+      looseCash: sampleCashBalance(10),
+      moneyBags: [],
+      includedSettlements: [
         sampleSettlementReport(),
         sampleSettlementReport(),
         sampleSettlementReport(),
@@ -44,14 +48,17 @@ export function CashSettlementTable() {
     },
     {
       description: "Etter veksel dag 2",
-      teller: sampleTeller(),
       time: new Date(),
-      settlement: sampleSettlement(0.1),
-      included: [sampleVeksel(), sampleVeksel()],
+      looseCash: sampleCashBalance(0.1),
+      moneyBags: [],
+      includedSettlements: [
+        sampleChangeReserveOrder(),
+        sampleChangeReserveOrder(),
+      ],
     },
   ];
 
-  const incompleteSettlement = sampleSettlement();
+  const incompleteSettlement = sampleCashBalance();
 
   return (
     <>
@@ -63,17 +70,26 @@ export function CashSettlementTable() {
         <tbody>
           {settlements.map((s) => (
             <>
-              {s.included.length > 0 && (
+              {s.includedSettlements.length > 0 && (
                 <SettlementTableRow
                   report={{
-                    settlement: sumSettlements(
-                      s.included.map((i) => i.settlement),
+                    balance: sumBalances(
+                      s.includedSettlements.map((i) => i.balance),
                     ),
                     description: "Sum av posteringer",
                   }}
                 />
               )}
-              <SettlementTableHeader key={s.time.toString()} report={s} />
+              <SettlementTableHeader
+                key={s.time.toString()}
+                report={{
+                  description: s.description,
+                  balance: sumBalances([
+                    ...s.moneyBags.map((b) => b.balance),
+                    s.looseCash,
+                  ]),
+                }}
+              />
             </>
           ))}
         </tbody>
