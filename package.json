@@ -5,7 +5,10 @@
     "build:client": "cd client && npm run build",
     "check": "npm run check:prettier && npm run check:client",
     "check:prettier": "prettier --check .",
-    "check:client": "cd client && npm run check"
+    "check:client": "cd client && npm run check",
+    "postinstall": "npm run install:client && npm run install:server",
+    "install:client": "cd client && npm install --include=dev",
+    "install:server": "cd server && npm install --include=dev"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
