@@ -1,4 +1,4 @@
-import { SettlementReport } from "./money";
+import { Settlement, SettlementReport } from "./money";
 
 function pickOne<T>(options: T[]): T {
   return options[Math.trunc(Math.random() * options.length)];
@@ -27,7 +27,7 @@ export function sampleVeksel() {
   };
 }
 
-export function sampleSettlement(scale = 1) {
+export function sampleSettlement(scale = 1): Settlement {
   return {
     kr1000: nextInt(0, 3, scale) * 1000,
     kr500: nextInt(0, 5, scale) * 500,

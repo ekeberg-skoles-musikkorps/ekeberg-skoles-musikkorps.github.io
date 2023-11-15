@@ -33,22 +33,22 @@ export function DepartmentSettlementForm() {
       <h2>Registrer kontanter</h2>
       {bills.map((bill) => (
         <BillInput
-          key={bill.field}
+          key={bill.denomination}
           label={bill.label}
           amount={bill.amount}
           onAmount={(amount) =>
-            setSettlement((old) => ({ ...old, [bill.field]: amount }))
+            setSettlement((old) => ({ ...old, [bill.denomination]: amount }))
           }
         />
       ))}
       {coins.map((coin) => (
         <CoinInput
-          key={coin.field}
+          key={coin.denomination}
           label={coin.label}
           amount={coin.amount}
           grams={coin.grams}
           onAmount={(amount) =>
-            setSettlement((old) => ({ ...old, [coin.field]: amount }))
+            setSettlement((old) => ({ ...old, [coin.denomination]: amount }))
           }
         />
       ))}

@@ -1,4 +1,4 @@
-import { BILL_LABELS, COIN_LABELS } from "../../lib/money/money";
+import { BILL_DENOMINATIONS, COIN_DENOMINATIONS } from "../../lib/money/money";
 import React from "react";
 
 export function SettlementTableTitleHeader() {
@@ -8,14 +8,14 @@ export function SettlementTableTitleHeader() {
       <th>Når</th>
       <th>Hvem</th>
       <th>Sum</th>
-      {BILL_LABELS.map((l) => (
-        <th key={l} className={"bill"}>
-          {l}
+      {BILL_DENOMINATIONS.map((d) => (
+        <th key={d} className={"bill"}>
+          {d}
         </th>
       ))}
-      {COIN_LABELS.map((l) => (
-        <th key={l} className={"bill"}>
-          {l}
+      {COIN_DENOMINATIONS.map((d) => (
+        <th key={d} className={"coin"}>
+          {d}
         </th>
       ))}
     </tr>

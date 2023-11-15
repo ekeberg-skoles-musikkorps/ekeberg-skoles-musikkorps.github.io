@@ -11,3 +11,7 @@
 .settlement-table .amount {
   text-align: right;
 }
+
+.settlement-table tr.incomplete {
+  font-style: italic;
+}

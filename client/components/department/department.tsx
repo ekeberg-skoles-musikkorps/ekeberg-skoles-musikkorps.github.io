@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  BILL_LABELS,
-  COIN_LABELS,
+  BILL_DENOMINATIONS,
+  COIN_DENOMINATIONS,
   sumSettlements,
 } from "../../lib/money/money";
 import { SettlementTable } from "../settlements/settlementTable";
@@ -14,19 +14,19 @@ export function Department() {
   return (
     <>
       <h2>Avdelingsrapport</h2>
-      {BILL_LABELS.map((l) =>
-        settlementSum[l] ? (
+      {BILL_DENOMINATIONS.map((d) =>
+        settlementSum[d] ? (
           <div>
-            {l}: {settlementSum[l]}
+            {d}: {settlementSum[d]}
           </div>
         ) : (
           <></>
         ),
       )}
-      {COIN_LABELS.map((l) =>
-        settlementSum[l] ? (
+      {COIN_DENOMINATIONS.map((d) =>
+        settlementSum[d] ? (
           <div>
-            {l}: {settlementSum[l]}
+            {d}: {settlementSum[d]}
           </div>
         ) : (
           <></>

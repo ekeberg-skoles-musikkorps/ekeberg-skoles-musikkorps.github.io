@@ -1,6 +1,6 @@
 import {
-  BILL_LABELS,
-  COIN_LABELS,
+  BILL_DENOMINATIONS,
+  COIN_DENOMINATIONS,
   SettlementReport,
 } from "../../lib/money/money";
 import React from "react";
@@ -21,14 +21,14 @@ export function SettlementTableHeader({
       <th className={"amount"}>
         {Object.values(settlement).reduce((a, b) => a + b, 0)}
       </th>
-      {BILL_LABELS.map((l) => (
-        <th key={l} className={"bill amount"}>
-          {settlement[l]}
+      {BILL_DENOMINATIONS.map((d) => (
+        <th key={d} className={"bill amount"}>
+          {settlement[d]}
         </th>
       ))}
-      {COIN_LABELS.map((l) => (
-        <th key={l} className={"coin amount"}>
-          {settlement[l]}
+      {COIN_DENOMINATIONS.map((d) => (
+        <th key={d} className={"coin amount"}>
+          {settlement[d]}
         </th>
       ))}
     </tr>
