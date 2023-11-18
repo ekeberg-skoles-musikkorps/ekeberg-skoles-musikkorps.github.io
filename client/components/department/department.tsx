@@ -1,6 +1,7 @@
 import React from "react";
 import {
   BILL_DENOMINATIONS,
+  cashTotal,
   COIN_DENOMINATIONS,
   sumBalances,
 } from "../../lib/money/money";
@@ -33,8 +34,7 @@ export function Department() {
         ),
       )}
       <div>
-        <strong>Sum</strong>:{" "}
-        {Object.values(balance).reduce((a, b) => a + b, 0)}
+        <strong>Sum</strong>: {cashTotal(balance)}
       </div>
 
       <SettlementTable settlements={settlements} />

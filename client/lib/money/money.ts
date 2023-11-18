@@ -39,12 +39,16 @@ export interface SettlementReport {
   balance: CashBalance;
 }
 
-export function sumBalances(settlements: CashBalance[]) {
+export function sumBalances(balances: CashBalance[]) {
   let denominations = [...BILL_DENOMINATIONS, ...COIN_DENOMINATIONS];
   return Object.fromEntries(
     denominations.map((d) => [
       d,
-      settlements.map((s) => s[d]).reduce((a, b) => a + b, 0) || 0,
+      balances.map((b) => b[d]).reduce((a, b) => a + b, 0) || 0,
     ]),
   );
+}
+
+export function cashTotal(balance: CashBalance) {
+  return Object.values(balance).reduce((a, b) => a + b, 0);
 }

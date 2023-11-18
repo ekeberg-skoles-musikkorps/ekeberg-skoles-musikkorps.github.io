@@ -1,5 +1,6 @@
 import {
   BILL_DENOMINATIONS,
+  cashTotal,
   COIN_DENOMINATIONS,
   SettlementReport,
 } from "../../lib/money/money";
@@ -18,9 +19,7 @@ export function SettlementTableRow({
       <td>{description}</td>
       <td>{time && "27/03 11:20"}</td>
       <td>{teller}</td>
-      <td className={"amount"}>
-        {Object.values(balance).reduce((a, b) => a + b, 0)}
-      </td>
+      <td className={"amount"}>{cashTotal(balance)}</td>
       {BILL_DENOMINATIONS.map((d) => (
         <td key={d} className={"bill amount"}>
           {balance[d]}

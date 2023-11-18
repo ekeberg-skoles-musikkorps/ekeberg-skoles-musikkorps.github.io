@@ -1,28 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { sampleSettlements } from "../../lib/money/sampleSettlements";
 import {
   BILL_DENOMINATIONS,
-  COIN_DENOMINATIONS,
   CashBalance,
+  cashTotal,
+  COIN_DENOMINATIONS,
 } from "../../lib/money/money";
 import { Link } from "react-router-dom";
+import { Dialog } from "../elements/dialog";
+import { MoneyBagForm } from "./moneyBagForm";
 
 export function CashSettlement() {
+  const [registrationDialogVisible, setRegistrationDialogVisible] =
+    useState(false);
   const candidateSettlements = sampleSettlements();
 
   const balance: CashBalance = {};
 
   return (
     <>
-      <dialog>
-        <h3>Registrer myntpose</h3>
-      </dialog>
+      <Dialog
+        onClose={() => setRegistrationDialogVisible(false)}
+        visible={registrationDialogVisible}
+      >
+        <MoneyBagForm />
+      </Dialog>
       <h2>Fullfør oppgjør</h2>
+      <div>
+        <button onClick={() => setRegistrationDialogVisible(true)}>
+          Registrer ny seddel/myntpose
+        </button>
+      </div>
       {BILL_DENOMINATIONS.map((d) => (
         <li id={d}>
           {d}: {balance[d] || 0}
-          <br />
-          <button>Registrer ny pose</button>
         </li>
       ))}
       {COIN_DENOMINATIONS.map((d) => (
@@ -39,7 +50,7 @@ export function CashSettlement() {
           <label>
             <input type="checkbox" />
             {report.time?.toString()}
-            {report.description}
+            {report.description}: kr {cashTotal(report.balance)}
           </label>
         </div>
       ))}

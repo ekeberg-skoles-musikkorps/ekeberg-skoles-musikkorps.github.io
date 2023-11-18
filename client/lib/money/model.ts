@@ -22,7 +22,7 @@ interface EventDepartment {
   pendingExchangeOrder: CashBalance;
 }
 
-interface MoneyBag {
+export interface MoneyBag {
   _id: string;
   barcode?: string;
   balance: CashBalance;

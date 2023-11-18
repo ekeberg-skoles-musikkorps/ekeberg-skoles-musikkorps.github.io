@@ -2,7 +2,7 @@ import * as React from "react";
 import { useEffect, useMemo, useState } from "react";
 import { BillInput } from "./billInput";
 import { CoinInput } from "./coinInput";
-import { bills, coins, CashBalance } from "../../lib/money/money";
+import { bills, CashBalance, cashTotal, coins } from "../../lib/money/money";
 
 function useWakeLock() {
   const [wakeLockSentinel, setWakeLockSentinel] = useState<WakeLockSentinel>();
@@ -17,16 +17,13 @@ function useWakeLock() {
 }
 
 export function DepartmentSettlementForm() {
-  const [settlement, setSettlement] = useState<CashBalance>(() =>
+  const [balance, setBalance] = useState<CashBalance>(() =>
     JSON.parse(sessionStorage.getItem("currentSettlement") || "{}"),
   );
   useEffect(() => {
-    sessionStorage.setItem("currentSettlement", JSON.stringify(settlement));
-  }, [settlement]);
-  const sum = useMemo(
-    () => Object.values(settlement).reduce((a, b) => a + b, 0),
-    [settlement],
-  );
+    sessionStorage.setItem("currentSettlement", JSON.stringify(balance));
+  }, [balance]);
+  const sum = useMemo(() => cashTotal(balance), [balance]);
   useWakeLock();
   return (
     <form>
@@ -37,7 +34,7 @@ export function DepartmentSettlementForm() {
           label={bill.label}
           amount={bill.amount}
           onAmount={(amount) =>
-            setSettlement((old) => ({ ...old, [bill.denomination]: amount }))
+            setBalance((old) => ({ ...old, [bill.denomination]: amount }))
           }
         />
       ))}
@@ -48,7 +45,7 @@ export function DepartmentSettlementForm() {
           amount={coin.amount}
           grams={coin.grams}
           onAmount={(amount) =>
-            setSettlement((old) => ({ ...old, [coin.denomination]: amount }))
+            setBalance((old) => ({ ...old, [coin.denomination]: amount }))
           }
         />
       ))}
@@ -57,7 +54,7 @@ export function DepartmentSettlementForm() {
       <div>
         <button>Lagre</button>
       </div>
-      <pre>{JSON.stringify(settlement, null, 2)}</pre>
+      <pre>{JSON.stringify(balance, null, 2)}</pre>
     </form>
   );
 }

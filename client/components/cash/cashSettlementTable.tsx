@@ -10,6 +10,7 @@ import { SettlementTableHeader } from "../settlements/settlementTableHeader";
 import { SettlementTableRow } from "../settlements/settlementTableRow";
 import {
   BILL_DENOMINATIONS,
+  cashTotal,
   COIN_DENOMINATIONS,
   sumBalances,
 } from "../../lib/money/money";
@@ -102,9 +103,7 @@ export function CashSettlementTable() {
               <Link to={"settlement/5"}>Påbegynt</Link>
             </td>
             <td>{sampleTeller()}</td>
-            <td className={"amount"}>
-              {Object.values(incompleteSettlement).reduce((a, b) => a + b, 0)}
-            </td>
+            <td className={"amount"}>{cashTotal(incompleteSettlement)}</td>
             {BILL_DENOMINATIONS.map((l) => (
               <td key={l} className={"bill amount"}>
                 {incompleteSettlement[l]}
