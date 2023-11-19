@@ -5,17 +5,19 @@ export function FrontPage() {
   return (
     <div className={"card-container"}>
       <div className={"card"}>
-        <Link to={"/cash"}>
+        <Link className={"card-link"} to={"/cash"}></Link>
+        <div>
           <h2>Kontantkasse</h2>
           <div>Beholdning: kr 129.231</div>
           <div>Inntjening: kr 125.231</div>
           <Link to={"/cash/settlements/new"}>
             <button>Ny avstemming</button>
           </Link>
-        </Link>
+        </div>
       </div>
       <div className={"card"}>
-        <Link to={"/departments"}>
+        <Link className={"card-link"} to={"/departments"}></Link>
+        <div>
           <h2>Avdelinger</h2>
           <div>Inntjening: kr 125.211</div>
           <div>12 avdelinger</div>
@@ -24,10 +26,11 @@ export function FrontPage() {
               <button>Ny inntelling</button>
             </Link>
           </div>
-        </Link>
+        </div>
       </div>
       <div className={"card"}>
-        <Link to={"/changeTasks"}>
+        <Link className={"card-link"} to={"/changeTasks"}></Link>
+        <div>
           <h2>Veksleoppdrag</h2>
           <div>1 veksleoppdrag</div>
           <div>
@@ -35,7 +38,7 @@ export function FrontPage() {
               <button>Nytt oppdrag</button>
             </Link>
           </div>
-        </Link>
+        </div>
       </div>
     </div>
   );

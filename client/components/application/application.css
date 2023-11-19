@@ -44,6 +44,22 @@ main {
   border-color: blue;
   min-width: 20em;
   min-height: 10em;
+  position: relative;
+}
+
+.card-container .card > div {
+  z-index: 1;
+  position: relative;
+  pointer-events: none;
+}
+
+.card-container .card > div a {
+  pointer-events: all;
+}
+
+.card-container .card .card-link {
+  position: absolute;
+  inset: 0;
 }
 
 .card a {
