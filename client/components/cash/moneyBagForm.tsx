@@ -2,21 +2,19 @@ import React, { useState } from "react";
 import { bills, CashBalance, cashTotal, coins } from "../../lib/money/money";
 import { BillInput } from "../department/billInput";
 import { CoinInput } from "../department/coinInput";
+import { MoneyBagLabel } from "./moneyBagLabel";
 
-export function MoneyBagForm() {
+export function MoneyBagForm({ onClose }: { onClose(): void }) {
+  const [label, setLabel] = useState("");
   const [balance, setBalance] = useState<CashBalance>({});
 
   function handleSubmit() {}
 
   return (
     <form method={"dialog"} onSubmit={handleSubmit}>
-      <h2>Registrer sedler og mynt</h2>
+      <h2>Registrer sedler/mynt</h2>
       <div>
-        <label>
-          Posenummer:
-          <br />
-          <input type={"number"} inputMode={"numeric"} />
-        </label>
+        <MoneyBagLabel label={label} setLabel={setLabel} />
       </div>
       {bills.map((bill) => (
         <BillInput
@@ -35,10 +33,11 @@ export function MoneyBagForm() {
         />
       ))}
       <div>
-        <div>Totalt: kr {cashTotal(balance)}</div>
+        <div>Total: kr {cashTotal(balance)}</div>
       </div>
       <div>
         <button>Fullfør</button>
+        <button onClick={onClose}>Avbryt</button>
       </div>
     </form>
   );

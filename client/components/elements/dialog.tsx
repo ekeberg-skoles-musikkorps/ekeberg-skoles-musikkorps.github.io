@@ -13,12 +13,22 @@ export function Dialog({
   useEffect(() => {
     if (visible) {
       ref.current.showModal();
+    } else {
+      ref.current.close();
     }
   }, [visible]);
 
   useEffect(() => {
+    function handleEscape(e: Event) {
+      e.preventDefault();
+    }
+
     ref.current.addEventListener("close", onClose);
-    return () => ref.current.removeEventListener("close", onClose);
+    ref.current.addEventListener("cancel", handleEscape);
+    return () => {
+      ref.current?.removeEventListener("cancel", handleEscape);
+      ref.current?.removeEventListener("close", onClose);
+    };
   }, []);
   return <dialog ref={ref}>{visible && children}</dialog>;
 }

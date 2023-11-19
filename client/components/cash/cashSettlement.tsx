@@ -23,7 +23,7 @@ export function CashSettlement() {
         onClose={() => setRegistrationDialogVisible(false)}
         visible={registrationDialogVisible}
       >
-        <MoneyBagForm />
+        <MoneyBagForm onClose={() => setRegistrationDialogVisible(false)} />
       </Dialog>
       <h2>Fullfør oppgjør</h2>
       <div>
