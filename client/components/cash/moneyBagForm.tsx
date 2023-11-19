@@ -21,22 +21,17 @@ export function MoneyBagForm() {
       {bills.map((bill) => (
         <BillInput
           key={bill.denomination}
-          label={bill.label}
-          amount={bill.amount}
-          onAmount={(amount) =>
-            setBalance((old) => ({ ...old, [bill.denomination]: amount }))
-          }
+          denomination={bill}
+          balance={balance}
+          setBalance={setBalance}
         />
       ))}
       {coins.map((coin) => (
         <CoinInput
           key={coin.denomination}
-          label={coin.label}
-          amount={coin.amount}
-          grams={coin.grams}
-          onAmount={(amount) =>
-            setBalance((old) => ({ ...old, [coin.denomination]: amount }))
-          }
+          denomination={coin}
+          balance={balance}
+          setBalance={setBalance}
         />
       ))}
       <div>

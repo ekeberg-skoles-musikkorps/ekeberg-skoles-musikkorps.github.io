@@ -9,9 +9,10 @@ import { SettlementTableTitleHeader } from "../settlements/settlementTableTitleH
 import { SettlementTableHeader } from "../settlements/settlementTableHeader";
 import { SettlementTableRow } from "../settlements/settlementTableRow";
 import {
-  BILL_DENOMINATIONS,
+  amountOfDenomination,
+  bills,
   cashTotal,
-  COIN_DENOMINATIONS,
+  coins,
   sumBalances,
 } from "../../lib/money/money";
 import { Link } from "react-router-dom";
@@ -104,14 +105,14 @@ export function CashSettlementTable() {
             </td>
             <td>{sampleTeller()}</td>
             <td className={"amount"}>{cashTotal(incompleteSettlement)}</td>
-            {BILL_DENOMINATIONS.map((l) => (
-              <td key={l} className={"bill amount"}>
-                {incompleteSettlement[l]}
+            {bills.map((d) => (
+              <td key={d.denomination} className={"bill amount"}>
+                {amountOfDenomination(incompleteSettlement, d)}
               </td>
             ))}
-            {COIN_DENOMINATIONS.map((l) => (
-              <td key={l} className={"coin amount"}>
-                {incompleteSettlement[l]}
+            {coins.map((d) => (
+              <td key={d.denomination} className={"coin amount"}>
+                {amountOfDenomination(incompleteSettlement, d)}
               </td>
             ))}
           </tr>

@@ -1,7 +1,8 @@
 import {
-  BILL_DENOMINATIONS,
+  amountOfDenomination,
+  bills,
   cashTotal,
-  COIN_DENOMINATIONS,
+  coins,
   SettlementReport,
 } from "../../lib/money/money";
 import React from "react";
@@ -20,14 +21,14 @@ export function SettlementTableRow({
       <td>{time && "27/03 11:20"}</td>
       <td>{teller}</td>
       <td className={"amount"}>{cashTotal(balance)}</td>
-      {BILL_DENOMINATIONS.map((d) => (
-        <td key={d} className={"bill amount"}>
-          {balance[d]}
+      {bills.map((d) => (
+        <td key={d.denomination} className={"bill amount"}>
+          {amountOfDenomination(balance, d)}
         </td>
       ))}
-      {COIN_DENOMINATIONS.map((d) => (
-        <td key={d} className={"coin amount"}>
-          {balance[d]}
+      {coins.map((d) => (
+        <td key={d.denomination} className={"coin amount"}>
+          {amountOfDenomination(balance, d)}
         </td>
       ))}
     </tr>

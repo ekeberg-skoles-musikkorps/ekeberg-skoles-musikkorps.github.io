@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useEffect, useMemo, useState } from "react";
 import { BillInput } from "./billInput";
-import { CoinInput } from "./coinInput";
 import { bills, CashBalance, cashTotal, coins } from "../../lib/money/money";
+import { CoinInput } from "./coinInput";
 
 function useWakeLock() {
   const [wakeLockSentinel, setWakeLockSentinel] = useState<WakeLockSentinel>();
@@ -31,22 +31,17 @@ export function DepartmentSettlementForm() {
       {bills.map((bill) => (
         <BillInput
           key={bill.denomination}
-          label={bill.label}
-          amount={bill.amount}
-          onAmount={(amount) =>
-            setBalance((old) => ({ ...old, [bill.denomination]: amount }))
-          }
+          denomination={bill}
+          balance={balance}
+          setBalance={setBalance}
         />
       ))}
       {coins.map((coin) => (
         <CoinInput
           key={coin.denomination}
-          label={coin.label}
-          amount={coin.amount}
-          grams={coin.grams}
-          onAmount={(amount) =>
-            setBalance((old) => ({ ...old, [coin.denomination]: amount }))
-          }
+          denomination={coin}
+          balance={balance}
+          setBalance={setBalance}
         />
       ))}
       <h3>Sum</h3>

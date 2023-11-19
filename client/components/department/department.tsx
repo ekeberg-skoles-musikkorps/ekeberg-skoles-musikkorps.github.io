@@ -1,8 +1,9 @@
 import React from "react";
 import {
-  BILL_DENOMINATIONS,
+  amountOfDenomination,
+  bills,
   cashTotal,
-  COIN_DENOMINATIONS,
+  coins,
   sumBalances,
 } from "../../lib/money/money";
 import { SettlementTable } from "../settlements/settlementTable";
@@ -15,19 +16,19 @@ export function Department() {
   return (
     <>
       <h2>Avdelingsrapport</h2>
-      {BILL_DENOMINATIONS.map((d) =>
-        balance[d] ? (
+      {bills.map((d) =>
+        balance[d.denomination] ? (
           <div>
-            {d}: {balance[d]}
+            {d.label}: {amountOfDenomination(balance, d)}
           </div>
         ) : (
           <></>
         ),
       )}
-      {COIN_DENOMINATIONS.map((d) =>
-        balance[d] ? (
+      {coins.map((d) =>
+        balance[d.denomination] ? (
           <div>
-            {d}: {balance[d]}
+            {d.label}: {amountOfDenomination(balance, d)}
           </div>
         ) : (
           <></>

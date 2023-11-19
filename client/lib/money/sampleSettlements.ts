@@ -18,26 +18,26 @@ export function sampleChangeReserveOrder(): SettlementReport {
     description: "Veksel",
     time: new Date(),
     balance: {
-      kr200: -400,
-      kr100: -500,
-      kr50: -200,
-      kr20: -100,
-      kr10: -100,
+      kr200: { count: -2 },
+      kr100: { count: -5 },
+      kr50: { count: -4 },
+      kr20: { count: -5 },
+      kr10: { count: -10 },
     },
   };
 }
 
 export function sampleCashBalance(scale = 1): CashBalance {
   return {
-    kr1000: nextInt(0, 3, scale) * 1000,
-    kr500: nextInt(0, 5, scale) * 500,
-    kr200: nextInt(0, 10, scale) * 200,
-    kr100: nextInt(0, 10, scale) * 100,
-    kr50: nextInt(0, 10, scale) * 50,
-    kr20: nextInt(0, 20, scale) * 20,
-    kr10: nextInt(0, 20, scale) * 10,
-    kr5: nextInt(0, 20, scale) * 5,
-    kr1: nextInt(0, 20, scale),
+    kr1000: { count: nextInt(0, 3, scale) },
+    kr500: { count: nextInt(0, 5, scale) },
+    kr200: { count: nextInt(0, 10, scale) },
+    kr100: { count: nextInt(0, 10, scale) },
+    kr50: { count: nextInt(0, 10, scale) },
+    kr20: { count: nextInt(0, 20, scale) },
+    kr10: { count: nextInt(0, 20, scale) },
+    kr5: { count: nextInt(0, 20, scale) },
+    kr1: { count: nextInt(0, 20, scale) },
   };
 }
 

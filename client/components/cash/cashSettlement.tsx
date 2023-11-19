@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { sampleSettlements } from "../../lib/money/sampleSettlements";
 import {
-  BILL_DENOMINATIONS,
+  amountOfDenomination,
+  bills,
   CashBalance,
   cashTotal,
-  COIN_DENOMINATIONS,
+  coins,
 } from "../../lib/money/money";
-import { Link } from "react-router-dom";
 import { Dialog } from "../elements/dialog";
 import { MoneyBagForm } from "./moneyBagForm";
 
@@ -31,16 +31,14 @@ export function CashSettlement() {
           Registrer ny seddel/myntpose
         </button>
       </div>
-      {BILL_DENOMINATIONS.map((d) => (
-        <li id={d}>
-          {d}: {balance[d] || 0}
+      {bills.map((d) => (
+        <li id={d.denomination}>
+          {d.label}: {amountOfDenomination(balance, d)}
         </li>
       ))}
-      {COIN_DENOMINATIONS.map((d) => (
-        <li id={d}>
-          <Link to={`coins/${d}`}>
-            {d}: {balance[d] || 0}
-          </Link>
+      {coins.map((d) => (
+        <li id={d.denomination}>
+          {d.label}: {amountOfDenomination(balance, d)}
         </li>
       ))}
 

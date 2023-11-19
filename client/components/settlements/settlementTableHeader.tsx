@@ -1,8 +1,9 @@
 import {
-  BILL_DENOMINATIONS,
+  amountOfDenomination,
+  bills,
   CashBalance,
   cashTotal,
-  COIN_DENOMINATIONS,
+  coins,
 } from "../../lib/money/money";
 import React from "react";
 
@@ -18,14 +19,14 @@ export function SettlementTableHeader({
       <th></th>
       <th></th>
       <th className={"amount"}>{cashTotal(balance)}</th>
-      {BILL_DENOMINATIONS.map((d) => (
-        <th key={d} className={"bill amount"}>
-          {balance[d]}
+      {bills.map((d) => (
+        <th key={d.denomination} className={"bill amount"}>
+          {amountOfDenomination(balance, d)}
         </th>
       ))}
-      {COIN_DENOMINATIONS.map((d) => (
-        <th key={d} className={"coin amount"}>
-          {balance[d]}
+      {coins.map((d) => (
+        <th key={d.denomination} className={"coin amount"}>
+          {amountOfDenomination(balance, d)}
         </th>
       ))}
     </tr>

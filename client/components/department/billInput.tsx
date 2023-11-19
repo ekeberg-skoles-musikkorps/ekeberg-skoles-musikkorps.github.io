@@ -1,31 +1,40 @@
 import * as React from "react";
 import { useEffect, useMemo, useState } from "react";
+import { CashBalance, Denomination } from "../../lib/money/money";
 
 export function BillInput({
-  label,
-  amount,
-  onAmount,
+  denomination,
+  balance,
+  setBalance,
 }: {
-  label: string;
-  amount: number;
-  onAmount(amount: number): void;
+  denomination: Denomination;
+  balance: CashBalance;
+  setBalance: (fn: (old: CashBalance) => CashBalance) => void;
 }) {
-  const [count, setCount] = useState("");
-  const sum = useMemo(() => (parseInt(count) || 0) * amount, [count]);
-  useEffect(() => onAmount(sum), [count]);
+  const value = balance[denomination.denomination];
+  const [input, setInput] = useState(() =>
+    value && "count" in value && value.count ? "" + value.count : "",
+  );
+  const count = useMemo(() => (input ? parseInt(input) : 0), [input]);
+  const sum = useMemo(() => count * denomination.amount, [count]);
+  useEffect(
+    () =>
+      setBalance((old) => ({ ...old, [denomination.denomination]: { count } })),
+    [count],
+  );
   return (
     <div>
       <label>
-        <strong>{label}</strong>:
+        <strong>{denomination.label}</strong>:
         <br />
         Antall:{" "}
         <input
           type="number"
-          value={count}
+          value={input}
           min={0}
-          onChange={(e) => setCount(e.target.value)}
+          onChange={(e) => setInput(e.target.value)}
         />
-        kr {(parseInt(count) || 0) * amount}
+        kr {sum}
       </label>
     </div>
   );
