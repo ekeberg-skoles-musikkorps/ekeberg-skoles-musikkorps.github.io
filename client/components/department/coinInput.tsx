@@ -1,13 +1,13 @@
 import * as React from "react";
 import { useEffect, useMemo, useState } from "react";
-import { CashBalance, CoinDenomination } from "../../lib/money/money";
+import { CashBalance, CoinDenominationType } from "../../lib/money/money";
 
 export function CoinInput({
   denomination,
   balance,
   setBalance,
 }: {
-  denomination: CoinDenomination;
+  denomination: CoinDenominationType;
   balance: CashBalance;
   setBalance: (fn: (old: CashBalance) => CashBalance) => void;
 }) {
