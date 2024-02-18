@@ -1,10 +1,19 @@
 import { CashBalance, SettlementReport } from "./money";
 
-export interface Event {
+export interface Project {
   _id: string;
   cashBalanceSettlements: CashBalanceSettlement[];
-  departments: EventDepartment[];
+  departments: ProjectDepartment[];
+  startingCashBalance: CashBalanceSettlement;
   currentCashBalance: CashBalanceSettlement;
+  users: ProjectUser[];
+}
+
+export interface ProjectUser {
+  _id: string;
+  phoneNumber: string;
+  name?: string;
+  role: "admin" | "teller" | "readOnly";
 }
 
 export interface CashBalanceSettlement {
@@ -15,7 +24,7 @@ export interface CashBalanceSettlement {
   moneyBags: MoneyBag[];
 }
 
-interface EventDepartment {
+interface ProjectDepartment {
   _id: string;
   name: string;
   settlements: SettlementReport[];

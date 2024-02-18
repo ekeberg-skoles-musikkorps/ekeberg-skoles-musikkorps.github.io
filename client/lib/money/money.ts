@@ -1,11 +1,27 @@
+const BILL_DENOMINATIONS = [
+  "kr1000",
+  "kr500",
+  "kr200",
+  "kr100",
+  "kr50",
+] as const;
+export type BillDenominationName = (typeof BILL_DENOMINATIONS)[number];
+
+const COIN_DENOMINATIONS = ["kr20", "kr10", "kr5", "kr1"] as const;
+export type CoinDenominationName = (typeof COIN_DENOMINATIONS)[number];
+
+export type DenominationName = CoinDenominationName | BillDenominationName;
+
 export interface DenominationType {
   label: string;
-  denomination: string;
+  denomination: DenominationName;
   amount: number;
 }
 
-const BILL_DENOMINATIONS = ["kr1000", "kr500", "kr200", "kr100", "kr50"];
-type BillDenominationName = (typeof BILL_DENOMINATIONS)[number];
+export interface CoinDenominationType extends DenominationType {
+  denomination: CoinDenominationName;
+  grams: number;
+}
 
 export const bills: DenominationType[] = [
   { label: "1000-kr", denomination: "kr1000", amount: 1000 },
@@ -14,13 +30,6 @@ export const bills: DenominationType[] = [
   { label: "100-kr", denomination: "kr100", amount: 100 },
   { label: "50-kr", denomination: "kr50", amount: 50 },
 ];
-
-const COIN_DENOMINATIONS = ["kr20", "kr10", "kr5", "kr1"];
-export type CoinDenominationName = (typeof COIN_DENOMINATIONS)[number];
-
-export interface CoinDenominationType extends DenominationType {
-  grams: number;
-}
 
 export const coins: CoinDenominationType[] = [
   { label: "20-kr", denomination: "kr20", amount: 20, grams: 9.9 },
@@ -32,7 +41,7 @@ export const coins: CoinDenominationType[] = [
 export const denominations = [...bills, ...coins];
 
 export type CashBalance = Record<
-  CoinDenominationName | BillDenominationName,
+  DenominationName,
   { count: number } | { grams: number }
 >;
 
@@ -45,10 +54,7 @@ export interface SettlementReport {
 
 export interface ChangeOrder {
   department: string;
-  balance: Record<
-    CoinDenominationName | BillDenominationName,
-    { count: number }
-  >;
+  balance: Record<DenominationName, { count: number }>;
 }
 
 export function sumBalances(balances: CashBalance[]) {

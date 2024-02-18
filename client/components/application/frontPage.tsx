@@ -30,7 +30,7 @@ export function FrontPage() {
           <div>Beholdning: kr 129.231</div>
           <div>Inntjening: kr 125.231</div>
           <Link to={"/cash/settlements/new"}>
-            <button>Ny avstemming</button>
+            <button tabIndex={-1}>Ny avstemming</button>
           </Link>
         </div>
       </div>
@@ -42,7 +42,7 @@ export function FrontPage() {
           <div>12 avdelinger</div>
           <div>
             <Link to={"/departments/settlements/new"}>
-              <button>Ny inntelling</button>
+              <button tabIndex={-1}>Ny inntelling</button>
             </Link>
           </div>
         </div>
@@ -54,7 +54,7 @@ export function FrontPage() {
           <div>1 veksleoppdrag</div>
           <div>
             <Link to={"/changeTasks/new"}>
-              <button>Nytt oppdrag</button>
+              <button tabIndex={-1}>Nytt veksleplan</button>
             </Link>
           </div>
         </div>

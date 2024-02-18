@@ -66,3 +66,9 @@ main {
   color: unset;
   text-decoration: none;
 }
+
+input:user-invalid,
+input:focus-visible.invalid,
+input.invalid {
+  outline: 1px solid red;
+}

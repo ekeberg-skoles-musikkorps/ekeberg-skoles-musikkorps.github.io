@@ -32,6 +32,9 @@ export function ChangeOrderCell({
   const { denomination } = denominationType;
   function handleKey(e: KeyboardEvent) {
     let preventDefault = true;
+    if (e.altKey || e.shiftKey || e.ctrlKey || e.metaKey) {
+      return;
+    }
     if (e.key === "ArrowUp") {
       onMove(row - 1, column);
     } else if (e.key === "ArrowDown") {

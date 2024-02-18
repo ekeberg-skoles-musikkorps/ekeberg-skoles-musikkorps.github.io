@@ -3,18 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { BillInput } from "./billInput";
 import { bills, CashBalance, cashTotal, coins } from "../../lib/money/money";
 import { CoinInput } from "./coinInput";
-
-function useWakeLock() {
-  const [wakeLockSentinel, setWakeLockSentinel] = useState<WakeLockSentinel>();
-  useEffect(() => {
-    navigator.wakeLock.request("screen").then((s) => {
-      setWakeLockSentinel(s);
-    });
-    return () => {
-      wakeLockSentinel?.release().then();
-    };
-  }, []);
-}
+import { useWakeLock } from "../../lib/useWakeLock";
 
 export function DepartmentSettlementForm() {
   const [balance, setBalance] = useState<CashBalance>(() =>
