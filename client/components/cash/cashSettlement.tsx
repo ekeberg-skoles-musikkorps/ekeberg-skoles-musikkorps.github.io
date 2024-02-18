@@ -48,7 +48,7 @@ export function CashSettlement() {
           <label>
             <input type="checkbox" />
             {report.time?.toString()}
-            {report.description}: kr {cashTotal(report.balance)}
+            {report.description}: kr&nbsp;{cashTotal(report.balance)}
           </label>
         </div>
       ))}

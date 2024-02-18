@@ -30,7 +30,7 @@ function ChangeDenominationInput({
     () => setBalance((old) => ({ ...old, [denomination]: { count } })),
     [count],
   );
-  const orderedCount = changeTask.balance[denomination].count;
+  const orderedCount = changeTask.balance[denomination]?.count || 0;
   const invalid = useMemo(
     () => input.length && count != orderedCount,
     [input, count],
@@ -51,7 +51,7 @@ function ChangeDenominationInput({
           max={1000}
           onChange={(e) => setInput(e.target.value)}
         />
-        kr {sum}
+        kr&nbsp;{sum}
       </label>
     </div>
   );
@@ -59,7 +59,7 @@ function ChangeDenominationInput({
 
 export function ExecuteChangeTask() {
   useWakeLock();
-  const [changeTask, setChangeTask] = useState<ChangeOrder>({
+  const [changeTask] = useState<ChangeOrder>({
     department: "Avdeling a",
     balance: sampleCashBalance(),
   });
@@ -85,7 +85,7 @@ export function ExecuteChangeTask() {
           />
         ))}
         <h3>Sum</h3>
-        <div>Kr {sum}</div>
+        <div>Kr&nbsp;{sum}</div>
         <div>
           <button>Lagre</button>
         </div>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { CashBalance, CoinDenominationType } from "../../lib/money/money";
 
 export function CoinInput({
@@ -9,7 +9,7 @@ export function CoinInput({
 }: {
   denomination: CoinDenominationType;
   balance: CashBalance;
-  setBalance: (fn: (old: CashBalance) => CashBalance) => void;
+  setBalance: Dispatch<SetStateAction<CashBalance>>;
 }) {
   const value = balance[denomination.denomination];
   const { grams } = denomination;
@@ -53,7 +53,8 @@ export function CoinInput({
           min={0}
           onChange={(e) => setInputCount(e.target.value)}
         />{" "}
-        kr {count * denomination.amount} ({(count * grams).toFixed(2)}g)
+        kr&nbsp;{count * denomination.amount}&nbsp;({(count * grams).toFixed(2)}
+        g)
         <br />
         Gram:{" "}
         <input
@@ -64,7 +65,7 @@ export function CoinInput({
           onChange={(e) => setInputWeight(e.target.value)}
           maxLength={5}
         />{" "}
-        ({grams}g per mynt)
+        ({grams}g&nbsp;per&nbsp;mynt)
       </label>
     </div>
   );

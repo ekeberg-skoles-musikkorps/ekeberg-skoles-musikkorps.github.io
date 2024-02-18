@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import {
   amountOfDenomination,
   cashTotal,
+  ChangeOrder,
   countOfDenomination,
   denominations,
   sumBalances,
@@ -24,18 +25,19 @@ export function NewChangeReserveTable({
 
   const cashReserve = useMemo(() => sampleCashBalance(10), []);
 
-  const [changeReserveOrders, setChangeReserveOrders] = useState(() =>
-    departments.map((department) => ({
-      department,
-      balance: Object.fromEntries(
-        Object.entries(cashReserve).map(([d, v]) => {
-          if ("count" in v) {
-            return [d, { count: Math.trunc(v.count / departments.length) }];
-          }
-          return [d, { count: 0 }];
-        }),
-      ),
-    })),
+  const [changeReserveOrders, setChangeReserveOrders] = useState<ChangeOrder[]>(
+    () =>
+      departments.map((department) => ({
+        department,
+        balance: Object.fromEntries(
+          Object.entries(cashReserve).map(([d, v]) => {
+            if ("count" in v) {
+              return [d, { count: Math.trunc(v.count / departments.length) }];
+            }
+            return [d, { count: 0 }];
+          }),
+        ),
+      })),
   );
 
   return (
@@ -106,7 +108,7 @@ export function NewChangeReserveTable({
             <td>{cashTotal(cashReserve)}</td>
             {denominations.map((denominationType) => (
               <td key={denominationType.denomination}>
-                kr {amountOfDenomination(cashReserve, denominationType)}
+                kr&nbsp;{amountOfDenomination(cashReserve, denominationType)}
               </td>
             ))}
           </tr>

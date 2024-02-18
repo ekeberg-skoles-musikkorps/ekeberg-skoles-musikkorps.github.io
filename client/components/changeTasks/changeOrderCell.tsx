@@ -74,7 +74,7 @@ export function ChangeOrderCell({
               balance: {
                 ...o.balance,
                 [denomination]: {
-                  count: nonNegative(v(o.balance[denomination].count)),
+                  count: nonNegative(v(o.balance[denomination]?.count || 0)),
                 },
               },
             }
@@ -109,7 +109,7 @@ export function ChangeOrderCell({
         max={100}
         onChange={(e) => setValue(() => parseInt(e.target.value))}
       />
-      <span>(kr {count * denominationType.amount})</span>
+      <span>(kr&nbsp;{count * denominationType.amount})</span>
     </>
   );
 }

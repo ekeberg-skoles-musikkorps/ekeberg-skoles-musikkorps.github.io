@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { CashBalance, DenominationType } from "../../lib/money/money";
 
 export function BillInput({
@@ -9,7 +9,7 @@ export function BillInput({
 }: {
   denomination: DenominationType;
   balance: CashBalance;
-  setBalance: (fn: (old: CashBalance) => CashBalance) => void;
+  setBalance: Dispatch<SetStateAction<CashBalance>>;
 }) {
   const value = balance[denomination.denomination];
   const [input, setInput] = useState(() =>
@@ -34,7 +34,7 @@ export function BillInput({
           min={0}
           onChange={(e) => setInput(e.target.value)}
         />
-        kr {sum}
+        kr&nbsp;{sum}
       </label>
     </div>
   );

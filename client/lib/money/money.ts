@@ -40,9 +40,8 @@ export const coins: CoinDenominationType[] = [
 
 export const denominations = [...bills, ...coins];
 
-export type CashBalance = Record<
-  DenominationName,
-  { count: number } | { grams: number }
+export type CashBalance = Partial<
+  Record<DenominationName, { count: number } | { grams: number }>
 >;
 
 export interface SettlementReport {
@@ -54,10 +53,10 @@ export interface SettlementReport {
 
 export interface ChangeOrder {
   department: string;
-  balance: Record<DenominationName, { count: number }>;
+  balance: Partial<Record<DenominationName, { count: number }>>;
 }
 
-export function sumBalances(balances: CashBalance[]) {
+export function sumBalances(balances: CashBalance[]): CashBalance {
   return Object.fromEntries(
     denominations.map((denomination) => {
       const count = balances
@@ -71,8 +70,8 @@ export function sumBalances(balances: CashBalance[]) {
 export function countOfDenomination(
   balance: CashBalance,
   denomination: DenominationType | CoinDenominationType,
-) {
-  const d = balance[denomination.denomination];
+): number {
+  const d = balance[denomination.denomination] || 0;
   const grams = "grams" in denomination ? denomination.grams : 1;
   return d && "count" in d
     ? d.count

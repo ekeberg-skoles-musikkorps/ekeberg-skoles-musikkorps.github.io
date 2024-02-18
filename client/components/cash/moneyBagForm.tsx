@@ -33,7 +33,7 @@ export function MoneyBagForm({ onClose }: { onClose(): void }) {
         />
       ))}
       <div>
-        <div>Total: kr {cashTotal(balance)}</div>
+        <div>Total: kr&nbsp;{cashTotal(balance)}</div>
       </div>
       <div>
         <button>Fullfør</button>

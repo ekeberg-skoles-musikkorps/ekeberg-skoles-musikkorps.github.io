@@ -34,7 +34,7 @@ export function DepartmentSettlementForm() {
         />
       ))}
       <h3>Sum</h3>
-      <div>Kr {sum}</div>
+      <div>Kr&nbsp;{sum}</div>
       <div>
         <button>Lagre</button>
       </div>
