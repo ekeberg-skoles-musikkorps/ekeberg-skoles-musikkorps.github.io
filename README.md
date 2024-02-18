@@ -1,12 +1,10 @@
-
 ## Scenarios:
-
 
 ### Admin creates new event
 
-* Name event
-* Create departments
-* Invite users
+- Name event
+- Create departments
+- Invite users
 
 ### Cash settlement
 
@@ -35,8 +33,7 @@
 3. Other teller/admin confirms cash settlement report
 4. Admin downloads report as excel
 
-
 ## Required report
 
-* Cash settlements
-* Department settlement reports (includes change tasks)
+- Cash settlements
+- Department settlement reports (includes change tasks)
