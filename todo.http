@@ -1,0 +1,4 @@
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+
+{ "user": "Johannes 2", "title": "The Final Title", "description": "Description" }
