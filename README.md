@@ -13,5 +13,6 @@ Uses a TODO list as an example
 
 ## References
 
+* [NodeJS google-spreadsheets documentation](https://theoephraim.github.io/node-google-spreadsheet/#/)
 * [https://gist.github.com/AnalyzePlatypus/a486323a331c91f738f2245ff9a1c66f]
 * [https://medium.com/@sakkeerhussainp/google-sheet-as-your-database-for-node-js-backend-a79fc5a6edd9]
