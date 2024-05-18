@@ -38,7 +38,6 @@ export function DepartmentSettlementForm() {
       <div>
         <button>Lagre</button>
       </div>
-      <pre>{JSON.stringify(balance, null, 2)}</pre>
     </form>
   );
 }
