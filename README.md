@@ -37,3 +37,11 @@
 
 - Cash settlements
 - Department settlement reports (includes change tasks)
+
+## TODO
+
+- [ ] Arithmetic operations in input fields (+, \*, -)
+- [ ] Antall in NewChangeTasks
+- [ ] Backend with Next
+- [ ] Login with Vipps
+- [ ] Create new event
