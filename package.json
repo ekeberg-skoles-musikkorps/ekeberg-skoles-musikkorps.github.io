@@ -1,3 +1,10 @@
 {
-  "name": "experimental-sheets-backend"
+  "name": "experimental-sheets-backend",
+  "scripts": {
+    "dev": "ts-node-dev server.ts"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0"
+  }
 }
